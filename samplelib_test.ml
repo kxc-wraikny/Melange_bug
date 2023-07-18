@@ -4,10 +4,12 @@ module Promise = struct
   let bind : 'x t -> ('x -> 'y t) -> 'y t = fun m af -> Js_promise.then_ af m
 end
 
-module Jest = struct
-  type t
-  external expect : 'a -> t = "expect" [@@bs.val]
-  external to_be : t -> 'a -> unit = "toBe" [@@bs.send]
+open struct
+  module Jest = struct
+    type t
+    external expect : 'a -> t = "expect" [@@bs.val]
+    external to_be : t -> 'a -> unit = "toBe" [@@bs.send]
+  end
 end
 
 open Jest

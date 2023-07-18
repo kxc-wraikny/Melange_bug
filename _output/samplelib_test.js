@@ -17,8 +17,6 @@ var $$Promise$1 = {
   bind: bind
 };
 
-var Jest = {};
-
 function test1(param) {
   var m = Promise.resolve(2);
   var m$1 = m.then(function (x) {
@@ -56,6 +54,5 @@ var Test = {
 };
 
 exports.$$Promise = $$Promise$1;
-exports.Jest = Jest;
 exports.Test = Test;
 /* No side effect */
