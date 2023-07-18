@@ -1,0 +1,44 @@
+(rule
+ (alias init)
+ (targets (dir node_modules))
+ (deps package.json yarn.lock)
+ (action (run yarn install --frozen-lockfile)))
+ 
+(library
+ (name melange_bug)
+ (public_name melange_bug)
+ (modules))
+
+(library
+ (name samplelib)
+ (modes melange)
+ (modules samplelib))
+
+(library
+ (name samplelib_test)
+ (modes melange)
+ (modules samplelib_test)
+ (libraries samplelib))
+
+(melange.emit
+ (target _output)
+ (modules)
+ (promote (until-clean))
+ (libraries samplelib samplelib_test))
+ 
+(rule
+ (alias runtest)
+ (deps
+  (sandbox none)
+  node_modules
+  (source_tree src)
+  (source_tree test)
+  (:outputs
+    _output/samplelib.js
+    _output/samplelib_test.js))
+ (action
+   (progn
+    (run yarn prepare-packages)
+    (with-accepted-exit-codes 0 (run yarn test)))))
+
+(dirs :standard \ node_modules)

@@ -1,0 +1,20 @@
+{
+  "name": "melange_bug",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "kxc-wraikny <wk@kxc.inc>",
+  "license": "MIT",
+  "scripts": {
+    "test": "npx jest",
+    "prepare-packages": "cp -r _output/node_modules/* ./node_modules/"
+  },
+  "files": [
+    "*.ml",
+    "*.mli",
+    "output/node_modules/*.js",
+    "test/*.spec.js"
+  ],
+  "devDependencies": {
+    "jest": "^29.6.1"
+  }
+}
